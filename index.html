@@ -5,19 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Dating Agency</title>
   <meta name="description" content="The Dating Agency — confidence, communication, and modern dating skills that actually work." />
-  <meta property="og:title" content="The Dating Agency" />
-  <meta property="og:description" content="Confidence, communication, and modern dating skills — no gimmicks." />
-  <meta property="og:type" content="website" />
   <meta name="theme-color" content="#7c5cff" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💘</text></svg>">
-  <!-- Fonts -->
+
+  <!-- Fonts & vendor CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <!-- Packages (CDN) -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css">
-  <!-- Base styles -->
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -38,60 +35,59 @@
         <span class="badge">TDA</span>
         <span class="logotype">The Dating Agency</span>
       </a>
-      <nav class="nav-links">
+
+      <nav class="nav-links" aria-label="Primary">
         <a href="#programs">Programs</a>
         <a href="#pricing">Pricing</a>
         <a href="#showreel">Showreel</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
+
       <div class="cta">
-        
         <a href="#contact" class="btn primary" data-ripple>Get in Touch</a>
       </div>
+
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
+
+    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
       <a href="#programs">Programs</a>
       <a href="#pricing">Pricing</a>
       <a href="#showreel">Showreel</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <a class="btn primary" href="#contact" data-ripple>Get in Touch</a>
+      <a href="#contact" class="btn primary" data-ripple>Get in Touch</a>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO with slideshow -->
+    <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
         <div data-aos="fade-right">
           <span class="tag">Confidence Coaching • Modern Dating Skills</span>
           <h1 class="display">Level up your dating life with <span class="gradient-text">The Dating Agency</span></h1>
           <p class="lead">Practical, respectful coaching to improve confidence, communication, and first-date flow — without gimmicks.</p>
+
           <div class="stats">
-            <div class="stat"><b data-countup="500">0</b><span>+ clients coached since 2021</span></div>
+            <div class="stat"><b data-countup="500">0</b><span>+ clients since 2021</span></div>
             <div class="stat"><b data-countup="93">0</b><span>% report higher confidence in 30 days</span></div>
-            <div class="stat"><b data-countup="100">0</b><span>% focus on authenticity, not tricks</span></div>
+            <div class="stat"><b data-countup="100">0</b><span>% focus on authenticity</span></div>
           </div>
+
           <div class="actions">
             <a href="#programs" class="btn" data-ripple>See Programs</a>
             <a href="#contact" class="btn primary" data-ripple>Contact Us</a>
           </div>
+
           <div class="trust">
             <span class="shield">✓</span> Clear frameworks. Actionable feedback. Confidential support.
           </div>
-          <div class="press">
-            <span class="press-label">As seen in</span>
-            <div class="press-logos">
-              <span class="press-logo">The Herald</span>
-              <span class="press-logo">Metro</span>
-              <span class="press-logo">Lifestyle+</span>
-            </div>
-          </div>
         </div>
+
         <div class="hero-card" data-aos="fade-left" aria-label="program preview">
           <div class="hero-swiper swiper">
             <div class="swiper-wrapper">
@@ -110,7 +106,7 @@
               <div class="swiper-slide hero-slide hs-c">
                 <div class="slide-copy">
                   <h3>First-Date Gameplan</h3>
-                  <p>Simple frameworks so dates feel fun and connected, not like interviews.</p>
+                  <p>Simple frameworks so dates feel fun and connected.</p>
                 </div>
               </div>
             </div>
@@ -121,7 +117,7 @@
             <h3>What you’ll master</h3>
             <ul class="muted">
               <li>Profile & photo audit with clear improvements</li>
-              <li>Conversation structure & first‑date frameworks</li>
+              <li>Conversation structure & first-date frameworks</li>
               <li>Body language, grooming, and style essentials</li>
               <li>Boundaries, standards & mindset</li>
             </ul>
@@ -130,12 +126,12 @@
       </div>
     </section>
 
-    <!-- Programs -->
+    <!-- PROGRAMS -->
     <section id="programs">
       <div class="container">
         <h2 data-aos="fade-up">Programs</h2>
         <div class="grid-3">
-          <div class="card" data-tilt data-aos="fade-up" data-aos-delay="0">
+          <div class="card" data-tilt data-aos="fade-up">
             <h3>Starter Reset</h3>
             <p class="muted">2 weeks • async + 1 call</p>
             <ul>
@@ -148,14 +144,14 @@
             <h3>Momentum Sprint</h3>
             <p class="muted">4 weeks • weekly calls</p>
             <ul>
-              <li>Messaging & date‑setting systems</li>
+              <li>Messaging & date-setting systems</li>
               <li>Confidence drills & social reps</li>
-              <li>First‑date playbook</li>
+              <li>First-date playbook</li>
             </ul>
           </div>
-          <div class="card" data-tilt data-aos="fade-up" data-aos-delay="160">
+          <div class="card" data-tilt data-aos="fade-up" data-aos-delay="120">
             <h3>Deep Makeover</h3>
-            <p class="muted">8 weeks • high‑touch coaching</p>
+            <p class="muted">8 weeks • high-touch coaching</p>
             <ul>
               <li>Mindset & boundary work</li>
               <li>Wardrobe + grooming revamp</li>
@@ -166,7 +162,7 @@
       </div>
     </section>
 
-    <!-- How it works -->
+    <!-- HOW IT WORKS -->
     <section>
       <div class="container">
         <h2 data-aos="fade-up">How it works</h2>
@@ -181,12 +177,12 @@
       </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- PRICING -->
     <section id="pricing">
       <div class="container">
         <h2 data-aos="fade-up">Pricing</h2>
         <div class="prices">
-          <div class="card price" data-aos="zoom-in" data-aos-delay="0">
+          <div class="card price" data-aos="zoom-in">
             <div class="ribbon">Most affordable</div>
             <h3>Starter</h3>
             <p class="amt">€149</p>
@@ -200,22 +196,22 @@
             <p class="muted">4 weeks • 4 calls</p>
             <button class="btn choose" data-plan="Momentum" data-ripple>Contact about Momentum</button>
           </div>
-          <div class="card price" data-aos="zoom-in" data-aos-delay="160">
+          <div class="card price" data-aos="zoom-in" data-aos-delay="120">
             <div class="ribbon">High-touch</div>
             <h3>Makeover</h3>
             <p class="amt">€899</p>
-            <p class="muted">8 weeks • high‑touch</p>
+            <p class="muted">8 weeks • high-touch</p>
             <button class="btn choose" data-plan="Makeover" data-ripple>Contact about Makeover</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Showreel -->
+    <!-- SHOWREEL -->
     <section id="showreel">
       <div class="container">
         <h2 data-aos="fade-up">Showreel</h2>
-        <p class="muted" data-aos="fade-up" data-aos-delay="80">Add client transformations or short clips later. For now, enjoy the coverflow.</p>
+        <p class="muted" data-aos="fade-up" data-aos-delay="60">Swap these with your real images/videos later.</p>
         <div class="swiper showreel-swiper" data-aos="fade-up" data-aos-delay="120">
           <div class="swiper-wrapper">
             <div class="swiper-slide reel r1"><span class="reel-cap">Profile Audit — Before/After</span></div>
@@ -233,15 +229,15 @@
       <div class="container">
         <h2 data-aos="fade-up">FAQ</h2>
         <div class="faq-list">
-          <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="faq-item" data-aos="fade-up">
             <button class="faq-q">Is this PUA stuff? <span class="indicator">+</span></button>
             <div class="faq-a">No tricks. We focus on confidence, communication, and respect.</div>
           </div>
-          <div class="faq-item" data-aos="fade-up" data-aos-delay="80">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="60">
             <button class="faq-q">Will this work if I’m shy? <span class="indicator">+</span></button>
-            <div class="faq-a">Yes. We build skills step‑by‑step and practice in low‑pressure ways.</div>
+            <div class="faq-a">Yes. We build skills step-by-step and practice in low-pressure ways.</div>
           </div>
-          <div class="faq-item" data-aos="fade-up" data-aos-delay="160">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
             <button class="faq-q">Do you help with photos and profiles? <span class="indicator">+</span></button>
             <div class="faq-a">Absolutely. You’ll get a checklist and feedback so your profile reflects you.</div>
           </div>
@@ -249,7 +245,7 @@
       </div>
     </section>
 
-    <!-- Contact (no forms) -->
+    <!-- CONTACT (mailto) -->
     <section id="contact">
       <div class="container">
         <h2 data-aos="fade-up">Contact</h2>
@@ -269,11 +265,8 @@
     <div class="container foot">
       <div>© <span id="year"></span> The Dating Agency • All rights reserved</div>
       <div class="links">
-        <a href="#faq" class="muted">FAQ</a>
-        <span class="muted"> • </span>
-        <a href="#pricing" class="muted">Pricing</a>
-      </div>
-    </div>
+        <a href="#faq" class="muted">FAQ</a><span class="muted"> • </span><a href="#pricing" class="muted">Pricing</a>
+    </div></div>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
@@ -283,7 +276,7 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://unpkg.com/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
   <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
-  <!-- App script (split) -->
+  <!-- App script -->
   <script type="module" src="app.js"></script>
 </body>
 </html>
