@@ -1,21 +1,21 @@
-// Current year
+// Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Smooth scrolling with Lenis
+// Smooth scrolling
 const lenis = new Lenis({ smoothWheel: true });
-function raf(time){ lenis.raf(time); requestAnimationFrame(raf) }
+function raf(t){ lenis.raf(t); requestAnimationFrame(raf) }
 requestAnimationFrame(raf);
 
-// AOS animations
+// AOS
 AOS.init({ duration: 700, once: true, offset: 80 });
 
 // Tilt cards
-document.querySelectorAll('[data-tilt]').forEach(el => {
-  VanillaTilt.init(el, { max: 8, glare: true, 'max-glare': .2, speed: 500 });
-});
+document.querySelectorAll('[data-tilt]').forEach(el =>
+  VanillaTilt.init(el, { max: 8, glare: true, 'max-glare': .2, speed: 500 })
+);
 
-// Hero Swiper (fade)
-const heroSwiper = new Swiper('.hero-swiper', {
+// Hero slider
+new Swiper('.hero-swiper', {
   slidesPerView: 1,
   effect: 'fade',
   autoplay: { delay: 2800 },
@@ -23,62 +23,29 @@ const heroSwiper = new Swiper('.hero-swiper', {
   pagination: { el: '.hero-swiper .swiper-pagination', clickable: true }
 });
 
-// Showreel Swiper (coverflow)
-const reelSwiper = new Swiper('.showreel-swiper', {
+// Showreel slider
+new Swiper('.showreel-swiper', {
   effect: 'coverflow',
-  grabCursor: true,
   centeredSlides: true,
-  slidesPerView: 'auto',
+  slidesPerView: 1,
   loop: true,
+  grabCursor: true,
   coverflowEffect: { rotate: 0, stretch: 0, depth: 120, modifier: 2, slideShadows: false },
   pagination: { el: '.showreel-swiper .swiper-pagination', clickable: true },
-  breakpoints: { 0:{slidesPerView:1}, 760:{slidesPerView:2}, 1024:{slidesPerView:3} }
+  breakpoints: { 760:{slidesPerView:2}, 1024:{slidesPerView:3} }
 });
 
-// Stats count-up when visible
+// Count-up stats
 const counters = document.querySelectorAll('[data-countup]');
-const observer = new IntersectionObserver((entries, obs)=>{
+const obs = new IntersectionObserver((entries,o)=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      const el = entry.target;
-      const target = +el.dataset.countup;
-      const start = 0;
-      const dur = 1200;
-      const t0 = performance.now();
-      function tick(t){
-        const p = Math.min((t - t0)/dur, 1);
-        el.textContent = Math.floor(start + p*(target - start));
-        if(p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      obs.unobserve(el);
-    }
+    if(!entry.isIntersecting) return;
+    const el = entry.target, target = +el.dataset.countup, dur = 1200, t0 = performance.now();
+    (function tick(t){ const p = Math.min((t - t0)/dur,1); el.textContent = Math.floor(p*target); if(p<1) requestAnimationFrame(tick); })(t0);
+    o.unobserve(el);
   });
-},{threshold: 0.6});
-counters.forEach(c=>observer.observe(c));
-
-// Theme toggle with localStorage
-const root = document.documentElement;
-const toggle = document.getElementById('toggleTheme');
-const THEME_KEY = 'tda-theme';
-function setTheme(mode){
-  const dark = mode === 'dark';
-  root.style.setProperty('--bg', dark ? '#0b0e13' : '#f6f7fb');
-  root.style.setProperty('--bg-2', dark ? '#0f1117' : '#ffffff');
-  root.style.setProperty('--card', dark ? '#121723' : '#ffffff');
-  root.style.setProperty('--text', dark ? '#e7ebf3' : '#11131a');
-  root.style.setProperty('--muted', dark ? '#9aa4b2' : '#596274');
-  document.body.style.background = dark
-    ? 'radial-gradient(1200px 800px at 80% -10%,rgba(124,92,255,.25),rgba(255,92,168,.1) 40%,transparent 60%),var(--bg)'
-    : 'radial-gradient(1200px 800px at 80% -10%,rgba(124,92,255,.12),rgba(255,92,168,.08) 40%,transparent 60%),var(--bg)';
-  localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
-  toggle.setAttribute('aria-label', dark ? 'Enable light theme' : 'Enable dark theme');
-}
-setTheme(localStorage.getItem(THEME_KEY) || 'dark');
-toggle.addEventListener('click', ()=>{
-  const next = (localStorage.getItem(THEME_KEY) || 'dark') === 'dark' ? 'light' : 'dark';
-  setTheme(next);
-});
+},{threshold:.6});
+counters.forEach(c=>obs.observe(c));
 
 // Mobile menu
 const hamburger = document.getElementById('hamburger');
@@ -91,10 +58,8 @@ hamburger?.addEventListener('click', ()=>{
 
 // FAQ accordion
 document.querySelectorAll('.faq-item').forEach(item=>{
-  const q = item.querySelector('.faq-q');
-  const a = item.querySelector('.faq-a');
-  const icon = item.querySelector('.indicator');
-  q.addEventListener('click',()=>{
+  const q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a'), icon = item.querySelector('.indicator');
+  q.addEventListener('click', ()=>{
     const open = a.style.display === 'block';
     document.querySelectorAll('.faq-a').forEach(el=>el.style.display='none');
     document.querySelectorAll('.faq-q .indicator').forEach(el=>el.textContent='+');
@@ -102,66 +67,60 @@ document.querySelectorAll('.faq-item').forEach(item=>{
   });
 });
 
-// CTA: pricing buttons -> mailto
+// Pricing buttons → mailto
 const contactEmail = 'hello@thedatingagency.example';
 document.querySelectorAll('.choose').forEach(btn=>{
-  btn.addEventListener('click',()=>{
+  btn.addEventListener('click', ()=>{
     const plan = btn.dataset.plan || 'General Enquiry';
     const subject = encodeURIComponent(`Enquiry about ${plan}`);
-    const body = encodeURIComponent(`Hi,\n\nI\'m interested in the ${plan} programme. Please share next steps.\n\nThanks!`);
+    const body = encodeURIComponent(`Hi,\n\nI'm interested in the ${plan} programme. Please share next steps.\n\nThanks!`);
     window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   });
 });
 
-// Toast helper
+// Toast + copy email
 function showToast(text){
   const el = document.getElementById('toast');
   el.textContent = text;
   el.classList.add('show');
   setTimeout(()=>el.classList.remove('show'), 2200);
 }
+document.getElementById('copyEmail')?.addEventListener('click', async ()=>{
+  try{ await navigator.clipboard.writeText(contactEmail); showToast('Email copied'); }
+  catch{ showToast('Copy failed'); }
+});
 
 // Scroll progress
 const progress = document.getElementById('progress');
-window.addEventListener('scroll', ()=>{
+addEventListener('scroll', ()=>{
   const h = document.documentElement;
-  const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight);
-  progress.style.width = (scrolled * 100) + '%';
+  progress.style.width = (h.scrollTop/(h.scrollHeight - h.clientHeight))*100 + '%';
 });
 
-// Parallax orbs on mouse move
+// Parallax orbs
 const orbs = document.querySelectorAll('.orb');
-window.addEventListener('mousemove', (e)=>{
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+addEventListener('mousemove', e=>{
+  const x = (e.clientX / innerWidth - .5) * 10;
+  const y = (e.clientY / innerHeight - .5) * 10;
   orbs.forEach((o,i)=> o.style.transform = `translate(${x*(i? -1:1)}px, ${y*(i? 1:-1)}px)`);
 });
 
 // Button ripple
-document.querySelectorAll('[data-ripple]').forEach(btn => {
+document.querySelectorAll('[data-ripple]').forEach(btn=>{
   btn.addEventListener('click', function(e){
-    const rect = this.getBoundingClientRect();
-    const r = Math.max(rect.width, rect.height);
+    const r = Math.max(this.clientWidth, this.clientHeight);
     const circle = document.createElement('span');
-    circle.style.position = 'absolute';
-    circle.style.borderRadius = '50%';
-    circle.style.pointerEvents = 'none';
-    circle.style.width = circle.style.height = r + 'px';
-    circle.style.left = (e.clientX - rect.left - r/2) + 'px';
-    circle.style.top = (e.clientY - rect.top - r/2) + 'px';
-    circle.style.background = 'rgba(255,255,255,.2)';
-    circle.style.transform = 'scale(0)';
-    circle.style.transition = 'transform .5s, opacity .6s';
+    const rect = this.getBoundingClientRect();
+    Object.assign(circle.style, {
+      position:'absolute', width:r+'px', height:r+'px', left:(e.clientX-rect.left-r/2)+'px',
+      top:(e.clientY-rect.top-r/2)+'px', background:'rgba(255,255,255,.2)', borderRadius:'50%',
+      transform:'scale(0)', transition:'transform .5s, opacity .6s', pointerEvents:'none'
+    });
     this.appendChild(circle);
-    requestAnimationFrame(()=>circle.style.transform = 'scale(1)');
+    requestAnimationFrame(()=>circle.style.transform='scale(1)');
     setTimeout(()=>{circle.style.opacity='0'; setTimeout(()=>circle.remove(), 300)}, 250);
   });
 });
 
-// Contact helpers (copy email)
-document.getElementById('copyEmail')?.addEventListener('click', async () => {
-  try{
-    await navigator.clipboard.writeText(contactEmail);
-    showToast('Email copied');
-  }catch(e){ showToast('Copy failed'); }
-});
+// Year in footer
+document.getElementById('year').textContent = new Date().getFullYear();
